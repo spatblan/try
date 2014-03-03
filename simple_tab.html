@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title>简单tab</title>
+	<style>
+		:root{background-color:#003;}
+		body{width:600px;padding:50px 0;margin:0 auto;}
+		ul.tab{padding:0px;margin:0px;border-bottom:4px solid #ccc;background-color:#f8f8f8;}
+		ul.tab li{display:inline-block;padding:10px;margin-bottom:-4px;border-bottom:4px solid #ccc;height:1.3em;line-height:1.3em;}
+		ul.tab li:hover{border-bottom:4px solid #666;}
+		div.tab-content{padding:10px;border:1px solid #f8f8f8;min-height:400px;background-color:#fefefe;}
+	</style>
+</head>
+<body>
+	<ul class="tab" id="tab">
+		<li>首页</li>
+		<li>新闻</li>
+		<li>about us</li>
+	</ul>
+	<div class="tab-content" id="tab_content">
+		<div><h1>hi，你好！</h1></div>
+		<div style="display:none;"><h1>除夕不放假了！</h1></div>
+		<div style="display:none;"><h1>北京市海淀区</h1></div>
+	</div>
+	<script>
+		(function(){
+			var tab = document.getElementById('tab');
+			var tab_lis = tab.children;
+			var tab_content = document.getElementById('tab_content');
+			var tab_content_divs = tab_content.children;
+
+			//console.log(tab_content_divs);
+			for(var i=0;i<tab_lis.length;i++){
+
+				tab_lis[i].onclick = (function(i){
+					return function(){
+						show_tab(i);
+					};
+				})(i);
+			}
+
+
+
+			function show_tab(clicked){
+				for(var i=0;i<tab_content_divs.length;i++){
+					if(clicked == i){
+						tab_content_divs[i].style.display = 'block';
+					}else{
+						tab_content_divs[i].style.display = 'none';
+					}
+				}
+			}
+		})();
+		
+	</script>
+</body>
+</html>
